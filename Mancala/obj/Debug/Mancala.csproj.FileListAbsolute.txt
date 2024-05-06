@@ -1,0 +1,10 @@
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\obj\Debug\Mancala.csproj.AssemblyReference.cache
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\obj\Debug\Mancala.csproj.CoreCompileInputs.cache
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\bin\Debug\Mancala.exe.config
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\bin\Debug\Mancala.exe
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\bin\Debug\Mancala.pdb
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\obj\Debug\Mancala.exe
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\obj\Debug\Mancala.pdb
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\bin\Debug\MancalaLibrary.dll
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\bin\Debug\MancalaLibrary.pdb
+C:\Users\scott.lowe\Desktop\MancalaApp\MancalaApp\Mancala\obj\Debug\Mancala.csproj.CopyComplete
