@@ -47,6 +47,7 @@ namespace Mancala
             } while (winner == null);
 
             Console.WriteLine($"Congratulations {winner.UsersName}, you have won the game!");
+            Console.ReadLine();
         }
 
         private static int GetStartingPitFromUser(PlayerModel activePlayer)

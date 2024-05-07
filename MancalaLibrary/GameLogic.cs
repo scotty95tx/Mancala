@@ -57,7 +57,6 @@ namespace MancalaLibrary
                 {
                     if (playerOneIsActive)
                     {
-                        pitIndex++;
                         currentBoard.player1Store++;
                         player1.StoreSeeds++;
                         startingPitSeeds--;
@@ -68,15 +67,18 @@ namespace MancalaLibrary
                         }
                         else
                         {
-                            currentBoard.Pits[6].Seeds++;
+                            currentBoard.Pits[pitIndex].Seeds++;
                             startingPitSeeds--;
+                            CheckAndTakeSeedsFromOppositeSide(currentBoard, pitIndex, startingPitSeeds, activePlayer, player1, player2);
+                            pitIndex++;
                         }
                     }
                     else
                     {
                         currentBoard.Pits[pitIndex].Seeds++;
-                        pitIndex++;
                         startingPitSeeds--;
+                        CheckAndTakeSeedsFromOppositeSide(currentBoard, pitIndex, startingPitSeeds, activePlayer, player1, player2);
+                        pitIndex++;
                     }
                 }
                 else if (pitIndex == 12)
@@ -86,6 +88,8 @@ namespace MancalaLibrary
                         pitIndex = 0;
                         currentBoard.Pits[pitIndex].Seeds++;
                         startingPitSeeds--;
+                        CheckAndTakeSeedsFromOppositeSide(currentBoard, pitIndex, startingPitSeeds, activePlayer, player1, player2);
+                        pitIndex++;
                     }
                     else
                     {
@@ -102,42 +106,53 @@ namespace MancalaLibrary
                         {
                             currentBoard.Pits[pitIndex].Seeds++;
                             startingPitSeeds--;
+                            CheckAndTakeSeedsFromOppositeSide(currentBoard, pitIndex, startingPitSeeds, activePlayer, player1, player2);
+                            pitIndex++;
                         }
                     }
                 }
-                else if (pitIndex <= 12 && pitIndex >= 0)
+                else if (pitIndex <= 11 && pitIndex >= 0)
                 {
                     currentBoard.Pits[pitIndex].Seeds++;
-                    pitIndex++;
                     startingPitSeeds--;
+                    CheckAndTakeSeedsFromOppositeSide(currentBoard, pitIndex, startingPitSeeds, activePlayer, player1, player2);
+                    pitIndex++;
                 }
-
-                /*if (currentBoard.Pits[pitIndex].Seeds == 1)
-                {
-                    TakeSeedsFromOppositeSide(currentBoard, pitIndex, activePlayer, player1, player2);
-                }*/
             }
             return true;
         }
 
-        private static void TakeSeedsFromOppositeSide(MancalaBoardModel currentBoard, int pitIndex, PlayerModel activePlayer, PlayerModel player1, PlayerModel player2)
+        private static void CheckAndTakeSeedsFromOppositeSide(MancalaBoardModel currentBoard, int pitIndex, int startingPitSeeds, PlayerModel activePlayer, PlayerModel player1, PlayerModel player2)
         {
-            if (activePlayer.UsersName == "Player 1" && pitIndex <= 5) 
+            if (currentBoard.Pits[pitIndex].Seeds == 1 && startingPitSeeds == 0)
             {
-                currentBoard.player1Store += currentBoard.Pits[11 - pitIndex].Seeds + 1;
-                player1.StoreSeeds += currentBoard.Pits[11 - pitIndex].Seeds + 1; 
-            }
-            else if (activePlayer.UsersName == "Player 2" && pitIndex <= 11) {
-               
-                currentBoard.player2Store += currentBoard.Pits[11 - pitIndex].Seeds + 1;
-                player2.StoreSeeds += currentBoard.Pits[11 - pitIndex].Seeds + 1;
+                if (activePlayer.UsersName == "Player 1" && pitIndex <= 5)
+                {
+                    int oppositePitIndex = 11 - pitIndex;
+
+                    currentBoard.player1Store += currentBoard.Pits[oppositePitIndex].Seeds + 1;
+                    player1.StoreSeeds += currentBoard.Pits[oppositePitIndex].Seeds + 1;
+
+                    currentBoard.Pits[oppositePitIndex].Seeds = 0;
+                    currentBoard.Pits[pitIndex].Seeds = 0;
+                }
+                else if (activePlayer.UsersName == "Player 2" && pitIndex <= 11 && pitIndex >= 6)
+                {
+                    int oppositePitIndex = 11 - pitIndex;
+
+                    currentBoard.player2Store += currentBoard.Pits[oppositePitIndex].Seeds + 1;
+                    player2.StoreSeeds += currentBoard.Pits[oppositePitIndex].Seeds + 1;
+
+                    currentBoard.Pits[oppositePitIndex].Seeds = 0;
+                    currentBoard.Pits[pitIndex].Seeds = 0;
+                }
             }
         }
 
         private static PitModel CreatePit(int pitNumber)
         {
             PitModel newPit = new PitModel();
-            newPit.Seeds = 5;
+            newPit.Seeds = 4;
             newPit.PitNumber = pitNumber;
             return newPit;
         }
